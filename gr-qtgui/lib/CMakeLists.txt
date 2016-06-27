@@ -140,6 +140,8 @@ include_directories(
     ${PYTHON_INCLUDE_DIRS}
 )
 
+MESSAGE( STATUS "INCLUDE_DIRECTORIES: " ${INCLUDE_DIRECTORIES} )
+
 link_directories(
     ${QWT_LIBRARY_DIRS}
     ${FFTW3F_LIBRARY_DIRS}
