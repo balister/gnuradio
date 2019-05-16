@@ -44,7 +44,7 @@ endif ()
 find_package(PythonLibs ${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR} EXACT)
 
 if (CMAKE_CROSSCOMPILING)
-    set(QA_PYTHON_EXECUTABLE "/usr/bin/python")
+    set(QA_PYTHON_EXECUTABLE "/usr/bin/python3")
 else (CMAKE_CROSSCOMPILING)
     set(QA_PYTHON_EXECUTABLE ${PYTHON_EXECUTABLE})
 endif(CMAKE_CROSSCOMPILING)
@@ -274,7 +274,7 @@ function(GR_PYTHON_INSTALL)
         file(TO_NATIVE_PATH ${PYTHON_EXECUTABLE} pyexe_native)
 
         if (CMAKE_CROSSCOMPILING)
-           set(pyexe_native "/usr/bin/env python")
+           set(pyexe_native "/usr/bin/env python3")
         endif()
 
         foreach(pyfile ${GR_PYTHON_INSTALL_PROGRAMS})
