@@ -31,6 +31,12 @@
 #include <iostream>
 #include <stdexcept>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 // the following header is deprecated as of Boost 1.66.0, and the
 // other API was introduced in Boost 1.58.0. Since we still support
 // Boost back to 1.54.0, use the older API if pre-1.5.80 and otherwise
@@ -159,6 +165,19 @@ bool buffer::allocate_buffer(int nitems, size_t sizeof_item)
     }
 
     d_base = (char*)d_vmcircbuf->pointer_to_first_copy();
+
+    struct {
+        int len;
+        void *addr;
+    } buffer;
+    int fp;
+
+    buffer.len = 2 * d_bufsize * d_sizeof_item;
+    buffer.addr = d_base;
+    fp = open("/dev/bufmap_misc", O_RDWR);
+    ioctl(fp, 1, &buffer);
+    close(fp);
+
     return true;
 }
 
