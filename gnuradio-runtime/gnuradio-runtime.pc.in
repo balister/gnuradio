@@ -8,4 +8,4 @@ Description: GNU Radio core runtime infrastructure
 Requires:
 Version: @LIBVER@
 Libs: -L${libdir} -lgnuradio-runtime -lgnuradio-pmt
-Cflags: -I${includedir} @PC_ADD_CFLAGS@
+Cflags: -I${includedir}
